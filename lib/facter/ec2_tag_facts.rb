@@ -71,6 +71,7 @@ else
           #puts "Setting fact #{fact} to #{child['Value']}"
 
           Facter.add("#{fact}") do
+	    has_weight 100
             setcode do
               child['Value']
             end

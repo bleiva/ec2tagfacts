@@ -46,7 +46,23 @@ class ec2tagfacts::params {
         }
       }
     }
-    'RedHat', 'Fedora', 'Scientific', 'SLC', 'Ascendos', 'CloudLinux', 'PSBM', 'OracleLinux', 'OVS', 'OEL': {
+    'RedHat': {
+      case $::operatingsystemrelease {
+        /^7.*/: {
+          $pippkg       = 'python-pip'
+          $rubyjsonpkg  = 'rubygem-json'
+          $awscli       = 'awscli'
+          $enable_epel  = true
+        }
+        default: {
+          $pippkg       = 'python-pip'
+          $rubyjsonpkg  = 'ruby-json'
+          $awscli       = 'awscli'
+          $enable_epel  = true
+        }
+      }
+    }
+    'Fedora', 'Scientific', 'SLC', 'Ascendos', 'CloudLinux', 'PSBM', 'OracleLinux', 'OVS', 'OEL': {
       $pippkg       = 'python-pip'
       $rubyjsonpkg  = 'ruby-json'
       $awscli       = 'awscli'

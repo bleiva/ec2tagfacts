@@ -69,20 +69,10 @@ class ec2tagfacts::params {
       $enable_epel  = true
     }
     'Amazon': {
-      case $::operatingsystemrelease {
-      /^2/: {
-          $pippkg       = undef
-          $rubyjsonpkg  = 'rubygem-json'
-          $awscli       = 'awscli'
-          $enable_epel  = false
-        }
-        default: {
-          $pippkg       = undef
-          $rubyjsonpkg  = 'rubygem18-json'
-          $awscli       = 'aws-cli'
-          $enable_epel  = false
-        }
-      }
+      $pippkg       = undef
+      $rubyjsonpkg  = 'rubygem18-json'
+      $awscli       = 'aws-cli'
+      $enable_epel  = false
     }
     'ubuntu', 'debian': {
       $pippkg       = 'python-pip'
